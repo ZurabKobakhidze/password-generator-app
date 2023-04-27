@@ -51,14 +51,21 @@ body {
   padding-top: 21px;
   padding-left: 16px;
   padding-right: 16px;
+  padding-bottom: 16px;
   box-sizing: border-box;
   margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .character_box {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  height: 32px;
 }
 
 .character_length {
@@ -77,4 +84,148 @@ body {
   font-size: 24px;
   line-height: 32px;
   color: #a4ffaf;
+}
+
+.input_box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 40px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin-top: 23px;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #18171f;
+
+  height: 8px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: white;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  margin-top: -10px;
+  background-position: center;
+  position: relative;
+  z-index: 2;
+}
+
+.green_line {
+  width: 50%;
+  background: #a4ffaf;
+  height: 8px;
+  top: 23px;
+  position: absolute;
+  left: 0;
+}
+
+.checkbox_div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 32px;
+  box-sizing: border-box;
+}
+
+.checkbox_text {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+  color: #e6e5ea;
+}
+
+.checkbox_label_box {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  position: relative;
+}
+
+.checkbox_button{
+    width: 20px;
+    height: 20px;
+    border: 2px solid #E6E5EA;
+    cursor: pointer;
+}
+
+.strength_box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 56px;
+  background: #18171f;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.strength_h2 {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+  color: #817d92;
+}
+
+.strength_power {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.medium_text {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: right;
+  color: #e6e5ea;
+}
+
+.energy_levels_box {
+  display: flex;
+  gap: 8px;
+}
+
+.level {
+  width: 10px;
+  height: 28px;
+  border: 2px solid #e6e5ea;
+}
+
+.generate_button {
+  background: #a4ffaf;
+  width: 100%;
+  height: 56px;
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+  color: #24232c;
+  margin-top: 16px;
+  border: none;
+  cursor: pointer;
 }
