@@ -45,6 +45,27 @@ body {
   color: #e6e5ea;
 }
 
+.logo_div {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.copied_text {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #a4ffaf;
+}
+
+.logo_div:hover .my_path {
+  fill: white;
+}
+
 .container {
   width: 100%;
   background: #24232c;
@@ -156,11 +177,11 @@ input[type="range"]::-webkit-slider-thumb {
   position: relative;
 }
 
-.checkbox_button{
-    width: 20px;
-    height: 20px;
-    border: 2px solid #E6E5EA;
-    cursor: pointer;
+.checkbox_button {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e6e5ea;
+  cursor: pointer;
 }
 
 .strength_box {
