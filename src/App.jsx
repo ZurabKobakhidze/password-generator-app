@@ -4,10 +4,33 @@ import { useState } from 'react';
 function App() {
   // const [count, setCount] = useState(0);
   const [isCopied, setIsCopied] = useState(false);
+  const [rangeValue, setRangeValue] = useState(2);
 
   const handleCopyClick = () => {
     setIsCopied(true);
+  };
+
+ 
+
+  const handleRangeChange = (event) => {
+    setRangeValue(event.target.value);
+  };
+
+  const getGreenLineWidth = (rangeValue) => {
     
+    return rangeValue * 25;
+  };
+
+  const characterNumberMap = {
+    '0': 1,
+    '1': 5,
+    '2': 10,
+    '3': 15,
+    '4': 20,
+  };
+
+  const getCharacterNumber = (rangeValue) => {
+    return characterNumberMap[rangeValue] || 0;
   };
 
   return (
@@ -38,28 +61,28 @@ function App() {
       <div className="container">
         <div className="character_box">
           <h2 className="character_length">Character Length</h2>
-          <h2 className="character_number">10</h2>
+          <h2 className="character_number">{getCharacterNumber(rangeValue)}</h2>
         </div>
         <div className="input_box">
-          <input type="range" id="vol" name="vol" min="0" max="2" value="1" />
+          <input type="range" id="vol" name="vol" min="0" max="4" value={rangeValue} onChange={handleRangeChange} />
           <output></output>
-          <div class="green_line"></div>
+          <div class="green_line" style={{ width: `${getGreenLineWidth(rangeValue)}%` }}></div>
         </div>
         <div className="checkbox_div">
           <div className="checkbox_label_box">
-           <div className="checkbox_button"></div>
+           <button className="checkbox_button"></button>
             <span class="checkbox_text">Include Uppercase Letters</span>
           </div>
           <div className="checkbox_label_box">
-          <div className="checkbox_button"></div>
+          <button className="checkbox_button"></button>
             <span class="checkbox_text">Include Lowercase Letters</span>
           </div>
           <div className="checkbox_label_box">
-          <div className="checkbox_button"></div>
+          <button className="checkbox_button"></button>
             <span class="checkbox_text">Include Numbers</span>
           </div>
           <div className="checkbox_label_box">
-          <div className="checkbox_button"></div>
+          <button className="checkbox_button"></button>
             <span class="checkbox_text">Include Symbols</span>
           </div>
         </div>
