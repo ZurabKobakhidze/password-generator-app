@@ -34,6 +34,7 @@ body {
   padding-left: 16px;
   padding-right: 16px;
   box-sizing: border-box;
+  height: 80px;
 }
 
 .copy_numbers {

@@ -31,6 +31,8 @@ function App() {
     const newActiveCheckboxes = [...activeCheckboxes];
     newActiveCheckboxes[index] = !newActiveCheckboxes[index];
     setActiveCheckboxes(newActiveCheckboxes);
+
+    updateGeneratedPassword();
   };
 
   const getCheckboxButtonStyle = (isActive) => {
@@ -46,11 +48,63 @@ function App() {
       : {};
   };
 
+  const uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
+  const numbers = "0123456789";
+  const symbols = "!@#$%^&*()_+-=[]{}|;':\",.<>?/";
+  
+  const generatePassword = (length, options) => {
+    let characters = "";
+  
+    if (options.uppercase) {
+      characters += uppercaseLetters;
+    }
+    if (options.lowercase) {
+      characters += lowercaseLetters;
+    }
+    if (options.numbers) {
+      characters += numbers;
+    }
+    if (options.symbols) {
+      characters += symbols;
+    }
+  
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      password += characters[randomIndex];
+    }
+  
+    return password;
+  };
+
+  const [generatedPassword, setGeneratedPassword] = useState("");
+  const [isGenerated, setIsGenerated] = useState(false);
+
+  const updateGeneratedPassword = () => {
+    if (!activeCheckboxes.some((checked) => checked)) {
+      setIsGenerated(false); 
+      setGeneratedPassword(""); 
+      return;
+    }
+    const newPassword = generatePassword(rangeValue, {
+      uppercase: activeCheckboxes[0],
+      lowercase: activeCheckboxes[1],
+      numbers: activeCheckboxes[2],
+      symbols: activeCheckboxes[3],
+    });
+    setGeneratedPassword(newPassword);
+    setIsGenerated(true);
+  };
+
   return (
     <div className="App">
       <h2 className="password_h2">Password Generator</h2>
       <div className="copy_box">
-        <h1 className="copy_numbers">PTx1f5DaFX</h1>
+        <div>
+        {isGenerated && <h1 className="copy_numbers">{generatedPassword}</h1>}
+        </div>
+        
         <div className="logo_div">
           {isCopied && <p className="copied_text">COPIED</p>}
           <svg
@@ -134,7 +188,10 @@ function App() {
             </div>
           </div>
         </div>
-        <button className="generate_button">
+        <button className="generate_button"onClick={() => {
+          setIsGenerated(true);
+          updateGeneratedPassword();
+        }}>
           GENERATE{" "}
           <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
             <path
