@@ -4,6 +4,7 @@ import { useState } from "react";
 function App() {
   const [isCopied, setIsCopied] = useState(false);
   const [rangeValue, setRangeValue] = useState(10);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const handleCopyClick = () => {
     setIsCopied(true);
@@ -85,6 +86,7 @@ function App() {
     if (!activeCheckboxes.some((checked) => checked)) {
       setIsGenerated(false); 
       setGeneratedPassword(""); 
+      setIsButtonClicked(false);
       return;
     }
     const newPassword = generatePassword(rangeValue, {
@@ -97,12 +99,14 @@ function App() {
     setIsGenerated(true);
   };
 
+
+
   return (
     <div className="App">
       <h2 className="password_h2">Password Generator</h2>
       <div className="copy_box">
         <div>
-        {isGenerated && <h1 className="copy_numbers">{generatedPassword}</h1>}
+        {isButtonClicked && isGenerated && <h1 className="copy_numbers">{generatedPassword}</h1>}
         </div>
         
         <div className="logo_div">
@@ -189,6 +193,7 @@ function App() {
           </div>
         </div>
         <button className="generate_button"onClick={() => {
+          setIsButtonClicked(true);
           setIsGenerated(true);
           updateGeneratedPassword();
         }}>
