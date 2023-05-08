@@ -11,6 +11,12 @@ body {
   padding-right: 16px;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #root {
   width: 100%;
 }
@@ -34,7 +40,8 @@ body {
   padding-left: 16px;
   padding-right: 16px;
   box-sizing: border-box;
-  height: 80px;
+  height: 64px;
+  margin-top: 16px;
 }
 
 .copy_numbers {
@@ -143,8 +150,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  background-color: #18171F;
-  border: 2px solid #A4FFAF;
+  background-color: #18171f;
+  border: 2px solid #a4ffaf;
   transition: 0.1s ease;
 }
 
@@ -192,8 +199,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
   background: none;
 }
 
-.checkbox_button:hover{
-  border: 2px solid #A4FFAF;
+.checkbox_button:hover {
+  border: 2px solid #a4ffaf;
 }
 
 .strength_box {
@@ -261,4 +268,95 @@ input[type="range"]::-webkit-slider-thumb:hover {
   margin-top: 16px;
   border: none;
   cursor: pointer;
+}
+
+.generate_button:hover {
+  border: 2px solid #a4ffaf;
+  background-color: #24232c;
+  color: #a4ffaf;
+}
+
+.generate_button:hover .generate_icon path {
+  fill: #a4ffaf;
+}
+
+@media screen and (min-width: 786px) {
+  body {
+    padding-top: 133px;
+    padding-left: 114px;
+    padding-right: 114px;
+  }
+
+  .copy_box {
+    margin-top: 33px;
+    height: 64px;
+    width: 540px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .container {
+    width: 540px;
+    padding-top: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 32px;
+  }
+
+  .character_length {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #e6e5ea;
+  }
+
+  .character_number {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 42px;
+    color: #a4ffaf;
+  }
+
+  .checkbox_text{
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #E6E5EA;
+  }
+
+  .input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    margin-top: 33px;
+    cursor: pointer;
+  }
+
+  .generate_button{
+    margin-top: 32px;
+  }
+
+  .strength_h2{
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #817D92;
+  }
+
+  .medium_text{
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: right;
+    color: #E6E5EA;
+  }
 }
