@@ -145,6 +145,7 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-webkit-slider-thumb:hover {
   background-color: #18171F;
   border: 2px solid #A4FFAF;
+  transition: 0.1s ease;
 }
 
 .green_line {

@@ -7,10 +7,17 @@ function App() {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const handleCopyClick = () => {
-    setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 1200);
+    if (generatedPassword) {
+      navigator.clipboard.writeText(generatedPassword).then(
+        () => {
+          setIsCopied(true);
+          setTimeout(() => {
+            setIsCopied(false);
+          }, 1200);
+        },
+        
+      );
+    }
   };
 
   const handleRangeChange = (event) => {
@@ -53,10 +60,10 @@ function App() {
   const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
   const numbers = "0123456789";
   const symbols = "!@#$%^&*()_+-=[]{}|;':\",.<>?/";
-  
+
   const generatePassword = (length, options) => {
     let characters = "";
-  
+
     if (options.uppercase) {
       characters += uppercaseLetters;
     }
@@ -69,13 +76,13 @@ function App() {
     if (options.symbols) {
       characters += symbols;
     }
-  
+
     let password = "";
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * characters.length);
       password += characters[randomIndex];
     }
-  
+
     return password;
   };
 
@@ -84,8 +91,8 @@ function App() {
 
   const updateGeneratedPassword = () => {
     if (!activeCheckboxes.some((checked) => checked)) {
-      setIsGenerated(false); 
-      setGeneratedPassword(""); 
+      setIsGenerated(false);
+      setGeneratedPassword("");
       setIsButtonClicked(false);
       return;
     }
@@ -99,16 +106,33 @@ function App() {
     setIsGenerated(true);
   };
 
+  const getLevelBackgroundColor = (levelIndex, activeCount) => {
+    const colors = ["#F64A4A", "#FB7C58", "#F8CD65", "#A4FFAF"];
+    if (levelIndex < activeCount) {
+      const color = colors[activeCount - 1];
+      return {
+        backgroundColor: color,
+        border: `2px solid ${color}`,
+      };
+    }
+    return {};
+  };
 
+  const getTextLabel = (activeCount) => {
+    const labels = ["TOO WEAK!", "WEAK", "MEDIUM", "STRONG"];
+    return labels[activeCount - 1] || "";
+  };
 
   return (
     <div className="App">
       <h2 className="password_h2">Password Generator</h2>
       <div className="copy_box">
         <div>
-        {isButtonClicked && isGenerated && <h1 className="copy_numbers">{generatedPassword}</h1>}
+          {isButtonClicked && isGenerated && (
+            <h1 className="copy_numbers">{generatedPassword}</h1>
+          )}
         </div>
-        
+
         <div className="logo_div">
           {isCopied && <p className="copied_text">COPIED</p>}
           <svg
@@ -183,20 +207,33 @@ function App() {
         <div className="strength_box">
           <h2 className="strength_h2">STRENGTH</h2>
           <div className="strength_power">
-            <span className="medium_text">MEDIUM</span>
+            <span className="medium_text">
+              {getTextLabel(
+                activeCheckboxes.filter((checkbox) => checkbox).length
+              )}
+            </span>
             <div className="energy_levels_box">
-              <div className="level"></div>
-              <div className="level"></div>
-              <div className="level"></div>
-              <div className="level"></div>
+              {activeCheckboxes.map((_, index) => (
+                <div
+                  key={index}
+                  className="level"
+                  style={getLevelBackgroundColor(
+                    index,
+                    activeCheckboxes.filter((checkbox) => checkbox).length
+                  )}
+                ></div>
+              ))}
             </div>
           </div>
         </div>
-        <button className="generate_button"onClick={() => {
-          setIsButtonClicked(true);
-          setIsGenerated(true);
-          updateGeneratedPassword();
-        }}>
+        <button
+          className="generate_button"
+          onClick={() => {
+            setIsButtonClicked(true);
+            setIsGenerated(true);
+            updateGeneratedPassword();
+          }}
+        >
           GENERATE{" "}
           <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
             <path
