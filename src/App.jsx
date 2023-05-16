@@ -167,7 +167,7 @@ function App() {
           />
           <output></output>
           <div
-            class="green_line"
+            className="green_line"
             style={{ width: `${getGreenLineWidth(rangeValue)}%` }}
           ></div>
         </div>
@@ -199,7 +199,7 @@ function App() {
                   </svg>
                 )}
               </button>
-              <span class="checkbox_text">{text}</span>
+              <span className="checkbox_text">{text}</span>
             </div>
           ))}
         </div>
